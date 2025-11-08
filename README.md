@@ -11,7 +11,7 @@ An API Gateway is a collection resources and methods. We create one resource (Dy
 When sending that **POST** request, it takes care of identifying the **DynamoDB operation** and provides back the data.
 
 Here's a sample request payload for a *create* item operation on DynamoDB:
-```
+```json
 {
     "operation": "create",
     "tableName": "lambda-apigateway",
@@ -25,7 +25,7 @@ Here's a sample request payload for a *create* item operation on DynamoDB:
 ```
 
 Here's another sample request payload for DynamoDB but for a *read* item operation:
-```
+```json
 {
     "operation": "read",
     "tableName": "lambda-apigateway",
@@ -48,7 +48,7 @@ A) Open policies page in the IAM console
 B) Click **Create policy** on top right corner  
 C) In the policy editor, click JSON, and paste:  
 
-```yaml
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -90,7 +90,7 @@ A) Open the **roles page** in the IAM console
 B) Choose **Create role**  
 C) Create a role with the following properties  
   - Trust entity type **>** AWS service, now select Lambda from Use case  
-  - Permissions **>** In your permission policies page, in the search bar, type **lambda-custom-policy**. That newly create     policy should now sho up. Select it, and click next.
+  - Permissions **>** In your permission policies page, in the search bar, type **lambda-custom-policy**. That newly create     policy should now show up. Select it, and click next.
   
 ![permissions](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/custom-policy.png)
 
@@ -153,9 +153,9 @@ Let's give that Lambda function a test. We'll simply do a sample echo operation 
 
 A) Click the **Test** tab right beside **Code** tab
 B) Give **Event name** as **echotest**
-C) Paste below's JSON into the event. The field *operator* instructs what the lambda function will perform. In our case, it will return the payload from our input event as output. Click *Save* to save.
+C) Paste below's JSON into the event. The field *operations* instructs what the lambda function will perform. In our case, it will return the payload from our input event as output. Click *Save* to save.
 
-```yaml
+```json
 {
     "operation": "echo",
     "payload": {
@@ -249,7 +249,7 @@ C) Validate the item is indeed inserted into your DynamoDB table. Go to **Dynamo
 
 ![table-view](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/table-view.png)
 
-D) To get all the inserted items from the table, we can use the *list* operation of Lmabda using that same API. Pass the fowllowing JSON to the API, and it will return all the items from the DynamoDB table.
+D) To get all the inserted items from the table, we can use the *list* operation of Lambda using that same API. Pass the following JSON to the API, and it will return all the items from the DynamoDB table.
 
 ```json
 {
@@ -265,7 +265,7 @@ Cleanup time!
 
 ### Cleaning up DynamoDB
 
-- To delete the table from DynamoDB console, sleect the table *lambda-apigateway. Now, top right, click *Actions*, then *Delete table*
+- To delete the table from DynamoDB console, select the table *lambda-apigateway. Now, top right, click *Actions*, then *Delete table*
 - To delete your Lambda, from the Lambda console, select Lambda *LambdaFunctionOverHttps*, click *Actions, then click *Delete*
 - To delete the API we created, in *API Gateway console, under *APIs, select *DynamoDBOperations* API, click *Delete*
 
