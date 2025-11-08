@@ -48,7 +48,7 @@ A) Open policies page in the IAM console
 B) Click **Create policy** on top right corner  
 C) In the policy editor, click JSON, and paste:  
 
-```
+```yaml
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -107,7 +107,7 @@ C) Click **Create function**
 D) Replace the default code with below's snippet and click **Deploy**
 
 **Python snippet code**
-```
+```python
 from __future__ import print_function
 import boto3
 import json
@@ -146,4 +146,94 @@ def lambda_handler(event, context):
 ```
 
 ![python-snippet](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/python-snippet.png)
+
+### Test your Lambda Function
+
+Let's give that Lambda function a test. We'll simply do a sample echo operation for now. Once DYnamoDB and the API are up, we can go deeper. The function **should** output whatever input you pass.
+
+A) Click the **Test** tab right beside **Code** tab
+B) Give **Event name** as **echotest**
+C) Paste below's JSON into the event. The field *operator* instructs what the lambda function will perform. In our case, it will return the payload from our input event as output. Click *Save* to save.
+
+```yaml
+{
+    "operation": "echo",
+    "payload": {
+        "somekey1": "lokivalue1",
+        "somekey2": "thorvalue2"
+    }
+}
+```
+D) Click **Test* and it will execute your test event. You should see the output in the console.  
+
+![test-lambda-function](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/test-lambda-function.png)
+
+Buckle up. We can now create DynamoDB table and an API using our lambda as backend!
+
+### Create your DynamoDB table
+*Create the DynamoDB table that the Lambda function uses.
+
+***Steps to create***
+A) Open the DynamoDB console
+B) Choose *tables* from the left pane, now click *Create table* on top right.
+C) Create a table with settings:  
+
+- Table name **>** lambda-apigateway
+- Partition key **>** id (string)
+D) Choose *Create table*  
+
+![dynamodb-table](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/dynamodb-table.png)
+
+### Create the API
+A) Go to API Gateway console
+B) Click create API
+C) Scroll down and select *Build for REST API*
+D) Name it **DynamoDBOperations**, keep the rest as is and click *Create API*
+
+![create-rest-api](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/create-rest-api.png)
+
+E) Each API is a collection of resources and methods which are ingested with backend HTTP endpoints. Lambda functions, or other AWS services. Usually, API resources are organized in a resource tree based on the application logic. In our scenario, we only have the root resource. Let's spice it up a bit by adding a resource. Click *Create Resource*.
+F) Input **DynamoDBManager* in the Resource Name. Now click *Create Resource*
+
+![create-method](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/create-method.png)
+
+G) Select *POST* from drop down
+H) *Integration type* should be pre-selected with *Lambda Function*. Select *LambdaFunctionOverHttps*, the function we created earlier. Type the name of the function, and it should appear. Select it **>** scroll down **>** and click *Create method*.
+
+![post-method](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/post-method.png)
+
+The API Lambda integration is done! Nice.
+
+### Deploy the API
+
+We can now deploy the API we created to a stage called *Prod*.
+
+A) Click *Deploy API* on your top right
+B) Select *New stage*. Name it **Prod** under *Stage name*. Click *Deploy
+
+![deploy-api])(https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/deploy-api.png)
+
+C) We're ready to run that solution! We need that endpoint URL to invoke the API endpoint. In the *Stages* screen, expand the *Prod* until you see *POST. Now Select *POST* method, and copy the *Invoke URL*.
+
+![invoke-url](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/invoke-url.png)
+
+### Test our solution
+
+A) Lambda function supports the *Create* operation to create an item in your DynamoDB table. You can request this operation using the following JSON:
+
+```json
+{
+    "operation": "create",
+    "tableName": "lambda-apigateway",
+    "payload": {
+        "Item": {
+            "id": "1234ABCD",
+            "number": 5
+        }
+    }
+}
+```
+B) Now, to execute our API from a **local machine**, we're going to use **Postman** and a Curl command. Choose your preferred method. Either way works!
+
+
 
