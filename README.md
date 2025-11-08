@@ -77,7 +77,8 @@ C) In the policy editor, click JSON, and paste:
     }
     ]
     }
-```
+```  
+![custom-policy](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/custom-policy.png)
 D) Name it "lambda-custom-policy" & click **Create Policy** on bottom right
 
 ### Create Lambda IAM role
@@ -90,6 +91,12 @@ B) Choose **Create role**
 C) Create a role with the following properties  
   - Trust entity type **>** AWS service, now select Lambda from Use case  
   - Permissions **>** In your permission policies page, in the search bar, type **lambda-custom-policy**. That newly create     policy should now sho up. Select it, and click next.
+  
+![permissions](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/custom-policy.png)
 
+- Role name **>** lambda-apigateway-role
+- Click **Create role**
+*To create that function*
+A) Click **Create function* in AWS Lambda console
 
-
+![create-function](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/create-function.png)
