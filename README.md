@@ -211,7 +211,7 @@ We can now deploy the API we created to a stage called *Prod*.
 A) Click *Deploy API* on your top right
 B) Select *New stage*. Name it **Prod** under *Stage name*. Click *Deploy
 
-![deploy-api])(https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/deploy-api.png)
+![deploy-api](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/deploy-api.png)
 
 C) We're ready to run that solution! We need that endpoint URL to invoke the API endpoint. In the *Stages* screen, expand the *Prod* until you see *POST. Now Select *POST* method, and copy the *Invoke URL*.
 
