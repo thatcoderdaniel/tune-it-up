@@ -235,5 +235,41 @@ A) Lambda function supports the *Create* operation to create an item in your Dyn
 ```
 B) Now, to execute our API from a **local machine**, we're going to use **Postman** and a Curl command. Choose your preferred method. Either way works!
 
+- To run this from Postman, select **POST**, paste that API invoke URL. Now, under **Body**, select **raw** and paste our JSON from above. Click **Send**. The API should execute and return **HTTPStatusCode** 200.
+
+![postman](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/postman.png)
+
+- To run this from a terminal, using cURL:
+```
+$ curl -X POST -d "{\"operation\":\"create\",\"tableName\":\"lambda-apigateway\",\"payload\":{\"Item\":{\"id\":\"1\",\"name\":\"Bob\"}}}" https://$API.execute-api.$REGION.amazonaws.com/prod/DynamoDBManager
+```
+C) Validate the item is indeed inserted into your DynamoDB table. Go to **Dynamo** console, select *lambda-apigateway* table, select *Explore table items* button from your top right, and the newly inserted item should be displaying!
+
+![explore-table](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/explore-table.png)
+
+![table-view](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/table-view.png)
+
+D) To get all the inserted items from the table, we can use the *list* operation of Lmabda using that same API. Pass the fowllowing JSON to the API, and it will return all the items from the DynamoDB table.
+
+```json
+{
+    "operation": "list",
+    "tableName": "lambda-apigateway",
+    "payload": {
+    }
+}
+```
+![postman-table](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/postman-table.png)
+
+Cleanup time!
+
+### Cleaning up DynamoDB
+
+- To delete the table from DynamoDB console, sleect the table *lambda-apigateway. Now, top right, click *Actions*, then *Delete table*
+- To delete your Lambda, from the Lambda console, select Lambda *LambdaFunctionOverHttps*, click *Actions, then click *Delete*
+- To delete the API we created, in *API Gateway console, under *APIs, select *DynamoDBOperations* API, click *Delete*
+
+
+
 
 
