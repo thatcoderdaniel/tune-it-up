@@ -90,7 +90,7 @@ A) Open the **roles page** in the IAM console
 B) Choose **Create role**  
 C) Create a role with the following properties  
   - Trust entity type **>** AWS service, now select Lambda from Use case  
-  - Permissions **>** In your permission policies page, in the search bar, type **lambda-custom-policy**. That newly create     policy should now show up. Select it, and click next.
+  - Permissions **>** In your permission policies page, in the search bar, type **lambda-custom-policy**. That newly created policy should now show up. Select it, and click next.
   
 ![permissions](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/custom-policy.png)
 
@@ -149,11 +149,11 @@ def lambda_handler(event, context):
 
 ### Test your Lambda Function
 
-Let's give that Lambda function a test. We'll simply do a sample echo operation for now. Once DYnamoDB and the API are up, we can go deeper. The function **should** output whatever input you pass.
+Let's give that Lambda function a test. We'll simply do a sample echo operation for now. Once DynamoDB and the API are up, we can go deeper. The function **should** output whatever input you pass.
 
 A) Click the **Test** tab right beside **Code** tab
 B) Give **Event name** as **echotest**
-C) Paste below's JSON into the event. The field *operations* instructs what the lambda function will perform. In our case, it will return the payload from our input event as output. Click *Save* to save.
+C) Paste below's JSON into the event. The field *operation* instructs what the lambda function will perform. In our case, it will return the payload from our input event as output. Click *Save* to save.
 
 ```json
 {
