@@ -193,7 +193,7 @@ D) Name it **DynamoDBOperations**, keep the rest as is and click *Create API*
 ![create-rest-api](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/create-rest-api.png)
 
 E) Each API is a collection of resources and methods which are ingested with backend HTTP endpoints. Lambda functions, or other AWS services. Usually, API resources are organized in a resource tree based on the application logic. In our scenario, we only have the root resource. Let's spice it up a bit by adding a resource. Click *Create Resource*.
-F) Input **DynamoDBManager* in the Resource Name. Now click *Create Resource*
+F) Input **DynamoDBManager** in the Resource Name. Now click *Create Resource*
 
 ![create-method](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/create-method.png)
 
