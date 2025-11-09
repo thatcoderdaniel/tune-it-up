@@ -1,7 +1,7 @@
 # tune-it-up
 ![tune-it-up-serverless](https://github.com/thatcoderdaniel/tune-it-up/blob/main/images/tune-it-up-serverless.png)
 
-An API Gateway is a collection resources and methods. We create one resource (DynamoDBManager) and define one method (POST) right on it. We back this up with a Lambda function (LambdaFunctionOverHttps). When calling the API through an HTTPS endpoint, Amazon API Gateway invokes that Lambda Function.
+An API Gateway is a collection of resources and methods. We create one resource (DynamoDBManager) and define one method (POST) right on it. We back this up with a Lambda function (LambdaFunctionOverHttps). When calling the API through an HTTPS endpoint, Amazon API Gateway invokes that Lambda Function.
 
 ### Supported operations with the POST method on our DynamoDBmanager resource
 - **C**reate, **R**ead, **U**pdate and **D**elete an item. | **CRUD**
