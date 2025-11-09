@@ -265,7 +265,7 @@ Cleanup time!
 
 ### Cleaning up DynamoDB
 
-- To delete the table from DynamoDB console, select the table *lambda-apigateway. Now, top right, click *Actions*, then *Delete table*
+- To delete the table from DynamoDB console, select the table *lambda-apigateway*. Now, top right, click *Actions*, then *Delete table*
 - To delete your Lambda, from the Lambda console, select Lambda *LambdaFunctionOverHttps*, click *Actions, then click *Delete*
 - To delete the API we created, in *API Gateway console, under *APIs, select *DynamoDBOperations* API, click *Delete*
 
